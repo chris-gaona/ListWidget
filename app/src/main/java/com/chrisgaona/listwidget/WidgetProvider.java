@@ -13,6 +13,7 @@ import android.widget.RemoteViews;
  */
 
 public class WidgetProvider extends AppWidgetProvider {
+    public static final String KEY_ITEM = "com.chrisgaona.listwidget.KEY_ITEM";
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         int[] realAppWidgetIds = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, WidgetProvider.class));
@@ -40,7 +41,10 @@ public class WidgetProvider extends AppWidgetProvider {
                     0,
                     intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
-            remoteViews.setOnClickPendingIntent(R.id.frameLayout, pendingIntent);
+            // set click on FrameLayout
+//            remoteViews.setOnClickPendingIntent(R.id.frameLayout, pendingIntent);
+            // set click on list items
+            remoteViews.setPendingIntentTemplate(R.id.listView, pendingIntent);
 
             appWidgetManager.updateAppWidget(id, remoteViews);
         }
