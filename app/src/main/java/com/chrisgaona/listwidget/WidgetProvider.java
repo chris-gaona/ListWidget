@@ -21,6 +21,9 @@ public class WidgetProvider extends AppWidgetProvider {
         for (int id : realAppWidgetIds) {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
 
+            Intent serviceIntent = new Intent(context, WidgetService.class);
+            remoteViews.setRemoteAdapter(R.id.listView, serviceIntent);
+
             int r = (int)(Math.random() * 0xff);
             int g = (int)(Math.random() * 0xff);
             int b = (int)(Math.random() * 0xff);
